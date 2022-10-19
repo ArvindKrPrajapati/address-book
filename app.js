@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config()
-const addressbook = require("./routes/address-book.route")
+const addressbook = require("./routes/contacts.route")
 const authlogin = require("./middleware/auth.middleware")
 const jwt = require('jsonwebtoken');
 
@@ -17,7 +17,7 @@ app.use("/address-book", authlogin, addressbook)
 app.get("/", (req, res) => {
     res.status(200).json({ msg: "welcome" })
 })
-
+// to create token for user_id =arvind defined in .env file
 app.get("/token", (req, res) => {
     const id = process.env.USER_ID
     const token = jwt.sign({ id }, process.env.JWT_SECRET);
